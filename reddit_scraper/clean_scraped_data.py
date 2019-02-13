@@ -30,7 +30,7 @@ for i in db:
     entry = db[i]
     t = re.sub(r'([^\s\w]|_)+', '', entry['title'].lower().strip())
     if t in reddit_titles:
-        results[t] = reddit_data[t]
+        results[entry['title']] = reddit_data[t]
         total += 1
 
 print(f'Got a total of {total} movies in both data sets.')
