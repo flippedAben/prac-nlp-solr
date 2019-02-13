@@ -25,8 +25,10 @@ update_field_type_json = {
         "tokenizer":{
            "class":"solr.StandardTokenizerFactory" },
         "filters":[{
+           "class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":"true"},{
            "class":"solr.LowerCaseFilterFactory"},{
            "class":"solr.KStemFilterFactory"},{
+           "class":"solr.StopFilterFactory", "words":"stopwords.txt"},{
            "class":"solr.SynonymGraphFilterFactory", "synonyms":"synonyms.txt"
            }]}}
 }
