@@ -33,6 +33,19 @@ update_field_type_json = {
            }]}}
 }
 
+update_field_json = {
+  "replace-field":{
+     "name":"title",
+     "type":"AnalyzedText",
+     "stored":true }
+}
+
 update_field_type_response = requests.post(ENDPOINT, json=update_field_type_json, headers=r_headers)
 
 print(update_field_type_response.status_code)
+
+update_field_response = requests.post(ENDPOINT, json=update_field_json, headers=r_headers)
+
+print(update_field_response.status_code)
+
+# Update all fields to be of AnalyzedText type
