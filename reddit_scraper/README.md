@@ -1,1 +1,1 @@
-The clean data is in clean_reddit_data<some_date_here>.json.
+In order to use PRAW, you need to have a praw.ini file.
