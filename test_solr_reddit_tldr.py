@@ -2,12 +2,12 @@ import requests
 import json
 import decimal
 
-ENDPOINT = "http://localhost:9000/solr/movies/query"
+ENDPOINT = "http://localhost:9000/solr/movies-reddit/query"
 
 r_headers = {"Content-Type": "application/json"}
 
-with open('./goldStandardWithSeries.json') as raw_turk_data:
-	turk_data = json.load(raw_turk_data)
+with open('./reddit_scraper/tldrmovies.json') as raw_tldr_data:
+	tldr_data = json.load(raw_tldr_data)
 
 precision_total_score = 0
 recall_total_score = 0
@@ -15,9 +15,11 @@ total_rank = 0
 total_row_count = 0
 total_correct_response_count = 0;
 
-for movie_row in turk_data:
-	movie_description = movie_row[0]
-	correct_movie = movie_row[2]
+
+
+for movie_name in tldr_data:
+	movie_description = tldr_data[movie_name]
+	correct_movie = movie_name
 	query_params = {'defType':'edismax', 'qf':'reddit_tags cast.name cast.character directors.name genres original_title overview production_companies production_countries release_date spoken_languages tagline',
 	                'q':movie_description}
 	query_response = requests.get(ENDPOINT, params=query_params, headers=r_headers)
